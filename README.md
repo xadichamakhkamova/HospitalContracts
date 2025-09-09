@@ -7,7 +7,7 @@ All services (Admin Panel, Doctor Service, Nurse Service, Patient Management Ser
 ---
 
 ## 📂 Project Structure
-
+.
 ├── genproto/ # Auto-generated Go code from .proto files
 │ ├── adminpb/ # Admin Panel gRPC definitions
 │ ├── doctorpb/ # Doctor Service gRPC definitions
