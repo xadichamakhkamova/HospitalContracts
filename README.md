@@ -1,4 +1,4 @@
-# Livestream Protos
+# Hospital Contracts
 
 This repository contains **Protocol Buffers (Protobuf) definitions** and generated Go code (`genproto`) used by the **Hospital Management System** microservices.
 
