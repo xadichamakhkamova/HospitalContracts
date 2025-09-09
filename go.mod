@@ -1,4 +1,4 @@
-module livestream-protos
+module github.com/xadichamakhkamova/HospitalContracts
 
 go 1.23.6
 
