@@ -25,7 +25,7 @@ service NurseService {
     rpc RegisterCheckup(RegisterCheckupRequest) returns (RegisterCheckupResponse);
 }
 
-// Bed status enum
+// bed status enum
 enum BedStatus {
     BED_UNSPECIFIED = 0; // default
     BED_AVAILABLE = 1;
@@ -43,6 +43,7 @@ enum HealthConditionType {
     RECOVERING = 4;
 }
 
+
 message PatientDonor {
     string id = 1;
     string full_name = 2;
@@ -58,7 +59,7 @@ message PatientDonor {
     bool is_eligible = 12;
     google.protobuf.Timestamp last_checkup_date = 13;
     double weight = 14;
-    string health_conditions = 15;
+    HealthConditionType health_conditions = 15;
     string donation_location = 16;
     Timestamps3 timestamps = 17;
 }
@@ -84,7 +85,7 @@ message CreateDonorRequest {
     string birth_date = 7;
     string blood_group = 8;
     double weight = 9;
-    string health_conditions = 10;
+    HealthConditionType health_conditions = 10;
 }
 message CreateDonorResponse {
     PatientDonor donor = 1;
@@ -124,7 +125,7 @@ message UpdateDonorRequest {
     string birth_date = 8;
     string blood_group = 9;
     double weight = 10;
-    string health_conditions = 11;
+    HealthConditionType health_conditions = 11;
 }
 message UpdateDonorResponse {
     PatientDonor donor = 1;

@@ -34,9 +34,8 @@ service AdminService {
      rpc UpdateBed(UpdateBedRequest) returns (UpdateBedResponse);
      rpc DeleteBed(DeleteBedRequest) returns (DeleteBedResponse);
 }
-
-// Bed status enum
-enum BedStatuS {
+// BED STATUS ENUM
+enum BED_STATUS {
     BED_UNSPECIFIED = 0; // default
     BED_AVAILABLE = 1;
     BED_OCCUPIED = 2;
@@ -44,8 +43,8 @@ enum BedStatuS {
     BED_MAINTENANCE = 4;
 }
 
-// Profession type
-enum ProfessionType {
+// PROFESSION TYPE
+enum PROFESSION_TYPE {
     PROFESSION_TYPE_UNSPECIFIED = 0; // default
     DOCTOR = 1;
     NURSE = 2;
@@ -55,12 +54,12 @@ enum ProfessionType {
     RECEPTIONIST = 6;
 }
 
-// Bed type
-enum BedType {
+// BED TYPE
+enum BED_TYPE {
     BED_TYPE_UNSPECIFIED = 0; // default
     GENERAL = 1;   
     PERSONAL = 2;  
-    ICU = 3;       // reanimatsiya (Intensive Care Unit)
+    ICU = 3;       // reanimatsiya (INTENSIVE CARE UNIT)
     SURGICAL = 4; 
 }
 
@@ -74,7 +73,7 @@ message Department {
 
 message Personal {
     string id = 1;
-    string profession = 2;
+    PROFESSION_TYPE profession = 2;
     string full_name = 3;
     string email = 4;
     string password = 5;
@@ -92,9 +91,9 @@ message Doctor {
 message BedInfo {
     string id = 1;
     int64 bed_number = 2;
-    string bed_type = 3;
+    BED_TYPE bed_type = 3;
     string description = 4;
-    BedStatuS status = 5; 
+    BED_STATUS status = 5; 
     Timestamps1 timestamps = 6;
 }
 
@@ -154,7 +153,7 @@ message DeleteDepartmentResponse {
 // ---------------- Personal and Doctor CRUD ----------------
 //CREATE
 message CreatePersonalRequest {
-    string profession = 1;
+    PROFESSION_TYPE profession = 1;
     string full_name = 2;
     string email = 3;
     string password = 4;
@@ -208,7 +207,7 @@ message ListDoctorsResponse {
 //UPDATE
 message UpdatePersonalRequest {
     string id = 1;
-    string profession = 2;
+    PROFESSION_TYPE profession = 2;
     string full_name = 3;
     string email = 4;
     string password = 5;
@@ -243,7 +242,7 @@ message DeletePersonalResponse {
 // Create
 message CreateBedRequest {
     int64 bed_number = 1;
-    string bed_type = 2;
+    BED_TYPE bed_type = 2;
     string description = 3;
 }
 message CreateBedResponse {
@@ -261,7 +260,7 @@ message GetBedByIDResponse {
 // LIST
 message ListBedSRequest {
     string search = 1;  //bed_number, bed_tupe
-    BedStatuS status = 2;      
+    BED_STATUS status = 2;      
     int32 page = 3;
     int32 limit = 4;
 }
@@ -274,9 +273,9 @@ message ListBedSResponse {
 message UpdateBedRequest {
     string id = 1;
     int64 bed_number = 2;
-    string bed_type = 3;
+    BED_TYPE bed_type = 3;
     string description = 4;
-    BedStatuS status = 5; 
+    BED_STATUS status = 5; 
 }
 message UpdateBedResponse {
     BedInfo bed = 1;
