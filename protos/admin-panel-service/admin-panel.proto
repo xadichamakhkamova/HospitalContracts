@@ -59,7 +59,7 @@ enum BED_TYPE {
     BED_TYPE_UNSPECIFIED = 0; // default
     GENERAL = 1;   
     PERSONAL = 2;  
-    ICU = 3;       // reanimatsiya (INTENSIVE CARE UNIT)
+    ICU = 3;     
     SURGICAL = 4; 
 }
 
