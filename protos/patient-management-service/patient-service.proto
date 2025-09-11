@@ -73,10 +73,9 @@ message GetPatientByIdResponse {
 
 //LIST
 message ListPatientsRequest {
-    string search = 1;        // name, email
-    string gender = 2;        // filtr (example: Male/Female)
-    int32 page = 3;
-    int32 limit = 4;
+    string search = 1;        // name, email, gender
+    int32 page = 2;
+    int32 limit = 3;
 }
 message ListPatientsResponse {
     repeated Patient patients = 1;
