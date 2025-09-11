@@ -43,17 +43,6 @@ enum BED_STATUS {
     BED_MAINTENANCE = 4;
 }
 
-// PROFESSION TYPE
-enum PROFESSION_TYPE {
-    PROFESSION_TYPE_UNSPECIFIED = 0; // default
-    DOCTOR = 1;
-    NURSE = 2;
-    SURGEON = 3;
-    LAB_ASSISTANT = 4;
-    PHARMACIST = 5;
-    RECEPTIONIST = 6;
-}
-
 // BED TYPE
 enum BED_TYPE {
     BED_TYPE_UNSPECIFIED = 0; // default
@@ -73,7 +62,7 @@ message Department {
 
 message Personal {
     string id = 1;
-    PROFESSION_TYPE profession = 2;
+    string profession = 2;
     string full_name = 3;
     string email = 4;
     string password = 5;
@@ -153,7 +142,7 @@ message DeleteDepartmentResponse {
 // ---------------- Personal and Doctor CRUD ----------------
 //CREATE
 message CreatePersonalRequest {
-    PROFESSION_TYPE profession = 1;
+    string profession = 1;
     string full_name = 2;
     string email = 3;
     string password = 4;
@@ -207,7 +196,7 @@ message ListDoctorsResponse {
 //UPDATE
 message UpdatePersonalRequest {
     string id = 1;
-    PROFESSION_TYPE profession = 2;
+    string profession = 2;
     string full_name = 3;
     string email = 4;
     string password = 5;
