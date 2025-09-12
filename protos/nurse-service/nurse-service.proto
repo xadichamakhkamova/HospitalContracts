@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option go_package = "./genproto/donorspb";
+option go_package = "./genproto/nursepb";
 
 import "google/protobuf/timestamp.proto";                 
 
 // ---------------- Service ----------------
-service DonorsService {
+service NurseService {
     //Donor
     rpc CreateDonor(CreateDonorRequest) returns (CreateDonorResponse);
     rpc GetDonorById(GetDonorByIdRequest) returns (GetDonorByIdResponse);
