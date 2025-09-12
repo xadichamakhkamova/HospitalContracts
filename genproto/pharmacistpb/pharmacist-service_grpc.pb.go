@@ -19,16 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	PharmacistService_CreateMedicine_FullMethodName          = "/PharmacistService/CreateMedicine"
-	PharmacistService_GetMedicineById_FullMethodName         = "/PharmacistService/GetMedicineById"
-	PharmacistService_ListMedicines_FullMethodName           = "/PharmacistService/ListMedicines"
-	PharmacistService_UpdateMedicine_FullMethodName          = "/PharmacistService/UpdateMedicine"
-	PharmacistService_DeleteMedicine_FullMethodName          = "/PharmacistService/DeleteMedicine"
-	PharmacistService_CreateMedicineCategory_FullMethodName  = "/PharmacistService/CreateMedicineCategory"
-	PharmacistService_GetMedicineCategoryById_FullMethodName = "/PharmacistService/GetMedicineCategoryById"
-	PharmacistService_ListMedicineCategories_FullMethodName  = "/PharmacistService/ListMedicineCategories"
-	PharmacistService_UpdateMedicineCategory_FullMethodName  = "/PharmacistService/UpdateMedicineCategory"
-	PharmacistService_DeleteMedicineCategory_FullMethodName  = "/PharmacistService/DeleteMedicineCategory"
+	PharmacistService_CreateMedicine_FullMethodName  = "/PharmacistService/CreateMedicine"
+	PharmacistService_GetMedicineById_FullMethodName = "/PharmacistService/GetMedicineById"
+	PharmacistService_ListMedicines_FullMethodName   = "/PharmacistService/ListMedicines"
+	PharmacistService_UpdateMedicine_FullMethodName  = "/PharmacistService/UpdateMedicine"
+	PharmacistService_DeleteMedicine_FullMethodName  = "/PharmacistService/DeleteMedicine"
 )
 
 // PharmacistServiceClient is the client API for PharmacistService service.
@@ -43,12 +38,6 @@ type PharmacistServiceClient interface {
 	ListMedicines(ctx context.Context, in *ListMedicinesRequest, opts ...grpc.CallOption) (*ListMedicinesResponse, error)
 	UpdateMedicine(ctx context.Context, in *UpdateMedicineRequest, opts ...grpc.CallOption) (*UpdateMedicineResponse, error)
 	DeleteMedicine(ctx context.Context, in *DeleteMedicineRequest, opts ...grpc.CallOption) (*DeleteMedicineResponse, error)
-	// Medicine Category
-	CreateMedicineCategory(ctx context.Context, in *CreateMedicineCategoryRequest, opts ...grpc.CallOption) (*CreateMedicineCategoryResponse, error)
-	GetMedicineCategoryById(ctx context.Context, in *GetMedicineCategoryByIdRequest, opts ...grpc.CallOption) (*GetMedicineCategoryByIdResponse, error)
-	ListMedicineCategories(ctx context.Context, in *ListMedicineCategoriesRequest, opts ...grpc.CallOption) (*ListMedicineCategoriesResponse, error)
-	UpdateMedicineCategory(ctx context.Context, in *UpdateMedicineCategoryRequest, opts ...grpc.CallOption) (*UpdateMedicineCategoryResponse, error)
-	DeleteMedicineCategory(ctx context.Context, in *DeleteMedicineCategoryRequest, opts ...grpc.CallOption) (*DeleteMedicineCategoryResponse, error)
 }
 
 type pharmacistServiceClient struct {
@@ -109,56 +98,6 @@ func (c *pharmacistServiceClient) DeleteMedicine(ctx context.Context, in *Delete
 	return out, nil
 }
 
-func (c *pharmacistServiceClient) CreateMedicineCategory(ctx context.Context, in *CreateMedicineCategoryRequest, opts ...grpc.CallOption) (*CreateMedicineCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateMedicineCategoryResponse)
-	err := c.cc.Invoke(ctx, PharmacistService_CreateMedicineCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pharmacistServiceClient) GetMedicineCategoryById(ctx context.Context, in *GetMedicineCategoryByIdRequest, opts ...grpc.CallOption) (*GetMedicineCategoryByIdResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMedicineCategoryByIdResponse)
-	err := c.cc.Invoke(ctx, PharmacistService_GetMedicineCategoryById_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pharmacistServiceClient) ListMedicineCategories(ctx context.Context, in *ListMedicineCategoriesRequest, opts ...grpc.CallOption) (*ListMedicineCategoriesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListMedicineCategoriesResponse)
-	err := c.cc.Invoke(ctx, PharmacistService_ListMedicineCategories_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pharmacistServiceClient) UpdateMedicineCategory(ctx context.Context, in *UpdateMedicineCategoryRequest, opts ...grpc.CallOption) (*UpdateMedicineCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateMedicineCategoryResponse)
-	err := c.cc.Invoke(ctx, PharmacistService_UpdateMedicineCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *pharmacistServiceClient) DeleteMedicineCategory(ctx context.Context, in *DeleteMedicineCategoryRequest, opts ...grpc.CallOption) (*DeleteMedicineCategoryResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteMedicineCategoryResponse)
-	err := c.cc.Invoke(ctx, PharmacistService_DeleteMedicineCategory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PharmacistServiceServer is the server API for PharmacistService service.
 // All implementations must embed UnimplementedPharmacistServiceServer
 // for forward compatibility
@@ -171,12 +110,6 @@ type PharmacistServiceServer interface {
 	ListMedicines(context.Context, *ListMedicinesRequest) (*ListMedicinesResponse, error)
 	UpdateMedicine(context.Context, *UpdateMedicineRequest) (*UpdateMedicineResponse, error)
 	DeleteMedicine(context.Context, *DeleteMedicineRequest) (*DeleteMedicineResponse, error)
-	// Medicine Category
-	CreateMedicineCategory(context.Context, *CreateMedicineCategoryRequest) (*CreateMedicineCategoryResponse, error)
-	GetMedicineCategoryById(context.Context, *GetMedicineCategoryByIdRequest) (*GetMedicineCategoryByIdResponse, error)
-	ListMedicineCategories(context.Context, *ListMedicineCategoriesRequest) (*ListMedicineCategoriesResponse, error)
-	UpdateMedicineCategory(context.Context, *UpdateMedicineCategoryRequest) (*UpdateMedicineCategoryResponse, error)
-	DeleteMedicineCategory(context.Context, *DeleteMedicineCategoryRequest) (*DeleteMedicineCategoryResponse, error)
 	mustEmbedUnimplementedPharmacistServiceServer()
 }
 
@@ -198,21 +131,6 @@ func (UnimplementedPharmacistServiceServer) UpdateMedicine(context.Context, *Upd
 }
 func (UnimplementedPharmacistServiceServer) DeleteMedicine(context.Context, *DeleteMedicineRequest) (*DeleteMedicineResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMedicine not implemented")
-}
-func (UnimplementedPharmacistServiceServer) CreateMedicineCategory(context.Context, *CreateMedicineCategoryRequest) (*CreateMedicineCategoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMedicineCategory not implemented")
-}
-func (UnimplementedPharmacistServiceServer) GetMedicineCategoryById(context.Context, *GetMedicineCategoryByIdRequest) (*GetMedicineCategoryByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMedicineCategoryById not implemented")
-}
-func (UnimplementedPharmacistServiceServer) ListMedicineCategories(context.Context, *ListMedicineCategoriesRequest) (*ListMedicineCategoriesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListMedicineCategories not implemented")
-}
-func (UnimplementedPharmacistServiceServer) UpdateMedicineCategory(context.Context, *UpdateMedicineCategoryRequest) (*UpdateMedicineCategoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMedicineCategory not implemented")
-}
-func (UnimplementedPharmacistServiceServer) DeleteMedicineCategory(context.Context, *DeleteMedicineCategoryRequest) (*DeleteMedicineCategoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteMedicineCategory not implemented")
 }
 func (UnimplementedPharmacistServiceServer) mustEmbedUnimplementedPharmacistServiceServer() {}
 
@@ -317,96 +235,6 @@ func _PharmacistService_DeleteMedicine_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PharmacistService_CreateMedicineCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMedicineCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PharmacistServiceServer).CreateMedicineCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PharmacistService_CreateMedicineCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PharmacistServiceServer).CreateMedicineCategory(ctx, req.(*CreateMedicineCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PharmacistService_GetMedicineCategoryById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMedicineCategoryByIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PharmacistServiceServer).GetMedicineCategoryById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PharmacistService_GetMedicineCategoryById_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PharmacistServiceServer).GetMedicineCategoryById(ctx, req.(*GetMedicineCategoryByIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PharmacistService_ListMedicineCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListMedicineCategoriesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PharmacistServiceServer).ListMedicineCategories(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PharmacistService_ListMedicineCategories_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PharmacistServiceServer).ListMedicineCategories(ctx, req.(*ListMedicineCategoriesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PharmacistService_UpdateMedicineCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMedicineCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PharmacistServiceServer).UpdateMedicineCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PharmacistService_UpdateMedicineCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PharmacistServiceServer).UpdateMedicineCategory(ctx, req.(*UpdateMedicineCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PharmacistService_DeleteMedicineCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteMedicineCategoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PharmacistServiceServer).DeleteMedicineCategory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PharmacistService_DeleteMedicineCategory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PharmacistServiceServer).DeleteMedicineCategory(ctx, req.(*DeleteMedicineCategoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PharmacistService_ServiceDesc is the grpc.ServiceDesc for PharmacistService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -433,26 +261,6 @@ var PharmacistService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMedicine",
 			Handler:    _PharmacistService_DeleteMedicine_Handler,
-		},
-		{
-			MethodName: "CreateMedicineCategory",
-			Handler:    _PharmacistService_CreateMedicineCategory_Handler,
-		},
-		{
-			MethodName: "GetMedicineCategoryById",
-			Handler:    _PharmacistService_GetMedicineCategoryById_Handler,
-		},
-		{
-			MethodName: "ListMedicineCategories",
-			Handler:    _PharmacistService_ListMedicineCategories_Handler,
-		},
-		{
-			MethodName: "UpdateMedicineCategory",
-			Handler:    _PharmacistService_UpdateMedicineCategory_Handler,
-		},
-		{
-			MethodName: "DeleteMedicineCategory",
-			Handler:    _PharmacistService_DeleteMedicineCategory_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
