@@ -19,18 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	NurseService_CreateDonor_FullMethodName        = "/NurseService/CreateDonor"
-	NurseService_GetDonorById_FullMethodName       = "/NurseService/GetDonorById"
-	NurseService_ListDonors_FullMethodName         = "/NurseService/ListDonors"
-	NurseService_UpdateDonor_FullMethodName        = "/NurseService/UpdateDonor"
-	NurseService_DeleteDonor_FullMethodName        = "/NurseService/DeleteDonor"
-	NurseService_AssignPatientToBed_FullMethodName = "/NurseService/AssignPatientToBed"
-	NurseService_ReleaseBed_FullMethodName         = "/NurseService/ReleaseBed"
-	NurseService_ReserveBed_FullMethodName         = "/NurseService/ReserveBed"
-	NurseService_GetBedById_FullMethodName         = "/NurseService/GetBedById"
-	NurseService_ListBedsByStatus_FullMethodName   = "/NurseService/ListBedsByStatus"
-	NurseService_RegisterDonation_FullMethodName   = "/NurseService/RegisterDonation"
-	NurseService_RegisterCheckup_FullMethodName    = "/NurseService/RegisterCheckup"
+	NurseService_CreateDonor_FullMethodName      = "/NurseService/CreateDonor"
+	NurseService_GetDonorById_FullMethodName     = "/NurseService/GetDonorById"
+	NurseService_ListDonors_FullMethodName       = "/NurseService/ListDonors"
+	NurseService_UpdateDonor_FullMethodName      = "/NurseService/UpdateDonor"
+	NurseService_DeleteDonor_FullMethodName      = "/NurseService/DeleteDonor"
+	NurseService_RegisterDonation_FullMethodName = "/NurseService/RegisterDonation"
+	NurseService_RegisterCheckup_FullMethodName  = "/NurseService/RegisterCheckup"
 )
 
 // NurseServiceClient is the client API for NurseService service.
@@ -45,12 +40,6 @@ type NurseServiceClient interface {
 	ListDonors(ctx context.Context, in *ListDonorsRequest, opts ...grpc.CallOption) (*ListDonorsResponse, error)
 	UpdateDonor(ctx context.Context, in *UpdateDonorRequest, opts ...grpc.CallOption) (*UpdateDonorResponse, error)
 	DeleteDonor(ctx context.Context, in *DeleteDonorRequest, opts ...grpc.CallOption) (*DeleteDonorResponse, error)
-	// Bed Management
-	AssignPatientToBed(ctx context.Context, in *AssignPatientToBedRequest, opts ...grpc.CallOption) (*AssignPatientToBedResponse, error)
-	ReleaseBed(ctx context.Context, in *ReleaseBedRequest, opts ...grpc.CallOption) (*ReleaseBedResponse, error)
-	ReserveBed(ctx context.Context, in *ReserveBedRequest, opts ...grpc.CallOption) (*ReserveBedResponse, error)
-	GetBedById(ctx context.Context, in *GetBedByIdRequest, opts ...grpc.CallOption) (*GetBedByIdResponse, error)
-	ListBedsByStatus(ctx context.Context, in *ListBedsRequest, opts ...grpc.CallOption) (*ListBedsResponse, error)
 	// EVENTS
 	RegisterDonation(ctx context.Context, in *RegisterDonationRequest, opts ...grpc.CallOption) (*RegisterDonationResponse, error)
 	RegisterCheckup(ctx context.Context, in *RegisterCheckupRequest, opts ...grpc.CallOption) (*RegisterCheckupResponse, error)
@@ -114,56 +103,6 @@ func (c *nurseServiceClient) DeleteDonor(ctx context.Context, in *DeleteDonorReq
 	return out, nil
 }
 
-func (c *nurseServiceClient) AssignPatientToBed(ctx context.Context, in *AssignPatientToBedRequest, opts ...grpc.CallOption) (*AssignPatientToBedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AssignPatientToBedResponse)
-	err := c.cc.Invoke(ctx, NurseService_AssignPatientToBed_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nurseServiceClient) ReleaseBed(ctx context.Context, in *ReleaseBedRequest, opts ...grpc.CallOption) (*ReleaseBedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReleaseBedResponse)
-	err := c.cc.Invoke(ctx, NurseService_ReleaseBed_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nurseServiceClient) ReserveBed(ctx context.Context, in *ReserveBedRequest, opts ...grpc.CallOption) (*ReserveBedResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReserveBedResponse)
-	err := c.cc.Invoke(ctx, NurseService_ReserveBed_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nurseServiceClient) GetBedById(ctx context.Context, in *GetBedByIdRequest, opts ...grpc.CallOption) (*GetBedByIdResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBedByIdResponse)
-	err := c.cc.Invoke(ctx, NurseService_GetBedById_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *nurseServiceClient) ListBedsByStatus(ctx context.Context, in *ListBedsRequest, opts ...grpc.CallOption) (*ListBedsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListBedsResponse)
-	err := c.cc.Invoke(ctx, NurseService_ListBedsByStatus_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *nurseServiceClient) RegisterDonation(ctx context.Context, in *RegisterDonationRequest, opts ...grpc.CallOption) (*RegisterDonationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterDonationResponse)
@@ -196,12 +135,6 @@ type NurseServiceServer interface {
 	ListDonors(context.Context, *ListDonorsRequest) (*ListDonorsResponse, error)
 	UpdateDonor(context.Context, *UpdateDonorRequest) (*UpdateDonorResponse, error)
 	DeleteDonor(context.Context, *DeleteDonorRequest) (*DeleteDonorResponse, error)
-	// Bed Management
-	AssignPatientToBed(context.Context, *AssignPatientToBedRequest) (*AssignPatientToBedResponse, error)
-	ReleaseBed(context.Context, *ReleaseBedRequest) (*ReleaseBedResponse, error)
-	ReserveBed(context.Context, *ReserveBedRequest) (*ReserveBedResponse, error)
-	GetBedById(context.Context, *GetBedByIdRequest) (*GetBedByIdResponse, error)
-	ListBedsByStatus(context.Context, *ListBedsRequest) (*ListBedsResponse, error)
 	// EVENTS
 	RegisterDonation(context.Context, *RegisterDonationRequest) (*RegisterDonationResponse, error)
 	RegisterCheckup(context.Context, *RegisterCheckupRequest) (*RegisterCheckupResponse, error)
@@ -226,21 +159,6 @@ func (UnimplementedNurseServiceServer) UpdateDonor(context.Context, *UpdateDonor
 }
 func (UnimplementedNurseServiceServer) DeleteDonor(context.Context, *DeleteDonorRequest) (*DeleteDonorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDonor not implemented")
-}
-func (UnimplementedNurseServiceServer) AssignPatientToBed(context.Context, *AssignPatientToBedRequest) (*AssignPatientToBedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AssignPatientToBed not implemented")
-}
-func (UnimplementedNurseServiceServer) ReleaseBed(context.Context, *ReleaseBedRequest) (*ReleaseBedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReleaseBed not implemented")
-}
-func (UnimplementedNurseServiceServer) ReserveBed(context.Context, *ReserveBedRequest) (*ReserveBedResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReserveBed not implemented")
-}
-func (UnimplementedNurseServiceServer) GetBedById(context.Context, *GetBedByIdRequest) (*GetBedByIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBedById not implemented")
-}
-func (UnimplementedNurseServiceServer) ListBedsByStatus(context.Context, *ListBedsRequest) (*ListBedsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListBedsByStatus not implemented")
 }
 func (UnimplementedNurseServiceServer) RegisterDonation(context.Context, *RegisterDonationRequest) (*RegisterDonationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterDonation not implemented")
@@ -351,96 +269,6 @@ func _NurseService_DeleteDonor_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NurseService_AssignPatientToBed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AssignPatientToBedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NurseServiceServer).AssignPatientToBed(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NurseService_AssignPatientToBed_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NurseServiceServer).AssignPatientToBed(ctx, req.(*AssignPatientToBedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NurseService_ReleaseBed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReleaseBedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NurseServiceServer).ReleaseBed(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NurseService_ReleaseBed_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NurseServiceServer).ReleaseBed(ctx, req.(*ReleaseBedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NurseService_ReserveBed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReserveBedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NurseServiceServer).ReserveBed(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NurseService_ReserveBed_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NurseServiceServer).ReserveBed(ctx, req.(*ReserveBedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NurseService_GetBedById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBedByIdRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NurseServiceServer).GetBedById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NurseService_GetBedById_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NurseServiceServer).GetBedById(ctx, req.(*GetBedByIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NurseService_ListBedsByStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListBedsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NurseServiceServer).ListBedsByStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NurseService_ListBedsByStatus_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NurseServiceServer).ListBedsByStatus(ctx, req.(*ListBedsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _NurseService_RegisterDonation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterDonationRequest)
 	if err := dec(in); err != nil {
@@ -503,26 +331,6 @@ var NurseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDonor",
 			Handler:    _NurseService_DeleteDonor_Handler,
-		},
-		{
-			MethodName: "AssignPatientToBed",
-			Handler:    _NurseService_AssignPatientToBed_Handler,
-		},
-		{
-			MethodName: "ReleaseBed",
-			Handler:    _NurseService_ReleaseBed_Handler,
-		},
-		{
-			MethodName: "ReserveBed",
-			Handler:    _NurseService_ReserveBed_Handler,
-		},
-		{
-			MethodName: "GetBedById",
-			Handler:    _NurseService_GetBedById_Handler,
-		},
-		{
-			MethodName: "ListBedsByStatus",
-			Handler:    _NurseService_ListBedsByStatus_Handler,
 		},
 		{
 			MethodName: "RegisterDonation",

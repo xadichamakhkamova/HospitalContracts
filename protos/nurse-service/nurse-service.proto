@@ -13,13 +13,6 @@ service NurseService {
     rpc UpdateDonor(UpdateDonorRequest) returns (UpdateDonorResponse);
     rpc DeleteDonor(DeleteDonorRequest) returns (DeleteDonorResponse);
 
-    //Bed Management
-    rpc AssignPatientToBed(AssignPatientToBedRequest) returns (AssignPatientToBedResponse);
-    rpc ReleaseBed(ReleaseBedRequest) returns (ReleaseBedResponse);
-    rpc ReserveBed(ReserveBedRequest) returns (ReserveBedResponse);
-    rpc GetBedById(GetBedByIdRequest) returns (GetBedByIdResponse);
-    rpc ListBedsByStatus(ListBedsRequest) returns (ListBedsResponse);
-
     // EVENTS
     rpc RegisterDonation(RegisterDonationRequest) returns (RegisterDonationResponse);
     rpc RegisterCheckup(RegisterCheckupRequest) returns (RegisterCheckupResponse);
@@ -53,15 +46,6 @@ message PatientDonor {
     HealthConditionType health_conditions = 15;
     string donation_location = 16;
     Timestamps3 timestamps = 17;
-}
-
-message BedManagement {
-    string id = 1;
-    string bed_id = 2;
-    string patient_id = 3;
-    string status = 5; 
-    google.protobuf.Timestamp assigned_at=6;
-    google.protobuf.Timestamp updated_at=7;
 }
 
 // ---------------- Donor CRUD ----------------
@@ -148,54 +132,6 @@ message RegisterCheckupRequest {
 message RegisterCheckupResponse {
     google.protobuf.Timestamp last_checkup_date = 1;
     bool is_eligible = 2;
-}
-
-// ---------------- Bed Management----------------
-//ASSIGN
-message AssignPatientToBedRequest {
-    string bed_id = 1;
-    string patient_id = 2;
-}
-
-message AssignPatientToBedResponse {
-    BedManagement bed = 1;
-}
-
-//RELEASE 
-message ReleaseBedRequest {
-    string bed_id = 1;
-}
-message ReleaseBedResponse {
-    BedManagement bed = 1;
-}
-
-//RESERVE BED
-message ReserveBedRequest {
-    string bed_id = 1;
-    string patient_id = 2;
-}
-message ReserveBedResponse {
-    BedManagement bed = 1;
-}
-
-//GET BY ID
-message GetBedByIdRequest {
-    string bed_id = 1;
-}
-message GetBedByIdResponse {
-    BedManagement bed = 1;
-}
-
-//LIST
-message ListBedsRequest {
-    string status = 1;
-    int32 page = 3;
-    int32 limit = 4;
-
-}
-message ListBedsResponse {
-    repeated BedManagement beds = 1;
-    int32 total_count = 2;
 }
 
 message Timestamps3 {
